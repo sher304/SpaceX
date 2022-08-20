@@ -89,8 +89,11 @@ class CustomTableCell: UITableViewCell{
         }
     }
     
-    func fetchData(title: String, date: String){
+    func fetchData(title: String, date: String, active: Bool){
         titleLabel.text = title
         dateLabel.text = date
+        if !active{
+            ticketImage.image = UIImage(named: "Failed")
+        }
     }
 }

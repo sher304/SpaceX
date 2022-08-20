@@ -11,11 +11,13 @@ import Kingfisher
 
 class DetailViewController: UIViewController {
     
+    //MARK: Connect With ViewModel
     private lazy var viewModel: DetailViewModel = {
         return DetailViewModel()
     }()
     
-    private lazy var contentSize = CGSize(width: view.frame.width, height: view.frame.height + 150)
+    //MARK: Content Size for Scroll View
+    private lazy var contentSize = CGSize(width: view.frame.width, height: view.frame.height + 200)
     
     private lazy var scrollView: UIScrollView = {
         let scrollV = UIScrollView(frame: .zero)
@@ -24,18 +26,20 @@ class DetailViewController: UIViewController {
         return scrollV
     }()
     
+    //MARK: Content View
     private lazy var contentView: UIView = {
         let view = UIView()
         view.frame.size = contentSize
         return view
     }()
     
+    //MARK: Backgorund Rocket Image
     private lazy var rocketImage: UIImageView = {
         let imageV = UIImageView()
         return imageV
     }()
     
-    
+    //MARK: Parent Black View
     private lazy var parentView: UIView = {
         let view = UIView()
         view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -45,6 +49,7 @@ class DetailViewController: UIViewController {
         return view
     }()
     
+    //MARK: Title of StarShip
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 24, weight: .semibold)
@@ -53,15 +58,18 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: Settings Button
     private lazy var settingButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "gearshape"), for: .normal)
         button.tintColor = .white
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
+        button.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
         return button
     }()
     
+    //MARK: Collection View
     private lazy var collectionV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -74,6 +82,7 @@ class DetailViewController: UIViewController {
         return collectionV
     }()
     
+    //MARK: First Flight Label
     private lazy var firstFlightLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
@@ -82,6 +91,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: First Flight Infromation
     private lazy var firstFlightInfrom: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
@@ -90,6 +100,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: Country Label
     private lazy var countryLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
@@ -98,6 +109,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: Country Infromation
     private lazy var countryInfrom: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
@@ -106,6 +118,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: Coast Label
     private lazy var coastLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
@@ -114,6 +127,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: Coast Infromation
     private lazy var coastInfrom: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
@@ -122,6 +136,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: First Stage Label
     private lazy var firstStage: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
@@ -130,6 +145,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: Engine Label
     private lazy var engineLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
@@ -138,6 +154,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: Engine Infromation
     private lazy var engineInfrom: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
@@ -146,6 +163,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: Fuel Label
     private lazy var fuelLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
@@ -154,6 +172,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: Fuel Information
     private lazy var fuelInfrom: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
@@ -162,6 +181,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: Fuel Extenstion 'ton/kg/e.n.t.c'
     private lazy var fuelExtension: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
@@ -170,6 +190,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: Burn Label
     private lazy var combustionLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
@@ -178,6 +199,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: Burn Time Information
     private lazy var combustionInfrom: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
@@ -186,63 +208,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-    private lazy var engineSecondLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
-        label.font = .systemFont(ofSize: 16)
-        label.text = "Количество двигателей"
-        return label
-    }()
-    
-    private lazy var engineSecondInfrom: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
-        label.text = "27"
-        label.font = .systemFont(ofSize: 16)
-        return label
-    }()
-    
-    private lazy var fuelSecondLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
-        label.font = .systemFont(ofSize: 16)
-        label.text = "Количество топлива"
-        return label
-    }()
-    
-    private lazy var fuelSecondInfrom: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
-        label.text = "308,6"
-        label.font = .systemFont(ofSize: 16)
-        return label
-    }()
-    
-    private lazy var fuelSecondExtension: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
-        label.font = .systemFont(ofSize: 16)
-        label.text = "ton"
-        return label
-    }()
-    
-    private lazy var combustionSecondLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
-        label.font = .systemFont(ofSize: 16)
-        label.text = "Bремя сгорания"
-        return label
-    }()
-    
-    private lazy var combustionSecondInfrom: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
-        label.text = "169 s"
-        label.font = .systemFont(ofSize: 16)
-        return label
-    }()
-    
-    
+    //MARK: Second Stage
     private lazy var secondStage: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
@@ -251,18 +217,84 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    //MARK: Engine Label
+    private lazy var engineSecondLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
+        label.font = .systemFont(ofSize: 16)
+        label.text = "Количество двигателей"
+        return label
+    }()
+    
+    //MARK: Engine Information
+    private lazy var engineSecondInfrom: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
+        label.text = "27"
+        label.font = .systemFont(ofSize: 16)
+        return label
+    }()
+    
+    //MARK: Fuel Label
+    private lazy var fuelSecondLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
+        label.font = .systemFont(ofSize: 16)
+        label.text = "Количество топлива"
+        return label
+    }()
+    
+    //MARK: Fuel Information
+    private lazy var fuelSecondInfrom: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
+        label.text = "308,6"
+        label.font = .systemFont(ofSize: 16)
+        return label
+    }()
+    
+    //MARK: Fuel Extension
+    private lazy var fuelSecondExtension: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
+        label.font = .systemFont(ofSize: 16)
+        label.text = "ton"
+        return label
+    }()
+    
+    //MARK: Burn Time Label
+    private lazy var combustionSecondLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
+        label.font = .systemFont(ofSize: 16)
+        label.text = "Bремя сгорания"
+        return label
+    }()
+    
+    //MARK: Burn Time Information
+    private lazy var combustionSecondInfrom: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
+        label.text = "169 s"
+        label.font = .systemFont(ofSize: 16)
+        return label
+    }()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
         setupScollView()
     }
     
+    //MARK: SetUp Scroll View Components
     func setupScollView(){
+        scrollView.backgroundColor = .black
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         setupUI()
     }
     
+    //MARK: SetUp All UI Components
     func setupUI(){
         contentView.addSubview(rocketImage)
         rocketImage.snp.makeConstraints { make in
@@ -419,7 +451,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    
+    //MARK: View Model Binder
     func bindViewModel(){
         viewModel.shareData()
         viewModel.items.bind { _ in
@@ -430,26 +462,49 @@ class DetailViewController: UIViewController {
         }
     }
     
+    //MARK: Set Data From Network
     func setDataComponents(){
         DispatchQueue.main.async { [self] in
             guard let images = viewModel.items.value.flickrImages.randomElement() else { return }
             rocketImage.kf.indicatorType = .activity
             rocketImage.kf.setImage(with: URL(string: images), placeholder: nil, options: nil, completionHandler: nil)
             let totalItems = viewModel.items.value
+            titleLabel.text = totalItems.name
             firstFlightInfrom.text = totalItems.firstFlight
             countryInfrom.text = totalItems.country
             coastInfrom.text = "$\(totalItems.costPerLaunch.description.prefix(2))млн"
+            countryInfrom.text = totalItems.country
+            
+            let firstStage = viewModel.items.value.firstStage
+            engineInfrom.text = firstStage.engines.description
+            fuelInfrom.text = firstStage.fuelAmountTons.description
+            combustionInfrom.text = firstStage.burnTimeSEC?.description
+            
+            let secondStage = viewModel.items.value.secondStage
+            engineSecondInfrom.text = secondStage.engines.description
+            fuelSecondInfrom.text = secondStage.fuelAmountTons.description
+            combustionSecondInfrom.text = firstStage.burnTimeSEC?.description
         }
     }
     
+    //MARK: Get id And Send To Network
     func getId(id: String){
         viewModel.getId(id: id)
         bindViewModel()
     }
+    
+    //MARK: Open Settings VC By Tap
+    @objc func settingsButtonTapped(){
+        let vc = SettingsViewController()
+        present(vc, animated: true, completion: nil)
+    }
 }
 
 
+//MARK: Extenstion Of Collection View
 extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource{
+
+    //MARK: Count of Horizontal Items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let items = viewModel.items.value
         var datas: [String] = []
@@ -460,6 +515,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
         return datas.count
     }
     
+    //MARK: Work With Custom Collection Cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionCell.identifier, for: indexPath) as? CustomCollectionCell else { return CustomCollectionCell(frame: .zero)}
         let items = viewModel.items.value
@@ -474,6 +530,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
         return cell
     }
     
+    //MARK: Set Size of Custom Cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 96, height: 96)
     }

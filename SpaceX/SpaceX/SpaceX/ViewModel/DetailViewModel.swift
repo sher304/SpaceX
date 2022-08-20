@@ -28,7 +28,7 @@ class DetailViewModel{
             self.id = "5e9d0d95eda69955f709d1eb"
         }else if id == "1"{
             self.id = "5e9d0d95eda69973a809d1ec"
-        }else if id == "3"{
+        }else if id == "2"{
             self.id = "5e9d0d95eda69974db09d1ed"
         }else{
             self.id = "5e9d0d96eda699382d09d1ee"
