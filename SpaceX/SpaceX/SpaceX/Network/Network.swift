@@ -11,6 +11,7 @@ import Alamofire
 
 protocol NetworkDelegate{
     func parseStarShip(completion: @escaping ([StarShip]) -> Void)
+    func parseById(id: String, completion: @escaping (StarShip) -> Void)
 }
 
 
@@ -21,6 +22,17 @@ class Network: NetworkDelegate{
             DispatchQueue.main.async {
                 guard let data = request.data else { return }
                 guard let responce = try? JSONDecoder().decode([StarShip].self, from: data) else { return }
+                completion(responce)
+            }
+        }
+    }
+    
+    func parseById(id: String, completion: @escaping (StarShip) -> Void){
+        guard let url = URL(string: "https://api.spacexdata.com/v4/rockets/\(id)") else { return }
+        AF.request(url).response { request in
+            DispatchQueue.main.async {
+                guard let data = request.data else { return }
+                guard let responce = try? JSONDecoder().decode(StarShip.self, from: data) else { return }
                 completion(responce)
             }
         }

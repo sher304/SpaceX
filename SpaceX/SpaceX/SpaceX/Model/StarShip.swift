@@ -150,5 +150,3 @@ struct Payloads: Codable {
 struct CompositeFairing: Codable {
     let height, diameter: Diameter
 }
-
-typealias Welcome = [StarShip]

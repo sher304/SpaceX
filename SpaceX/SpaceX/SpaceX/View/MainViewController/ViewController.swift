@@ -10,8 +10,8 @@ import SnapKit
 
 class ViewController: UIViewController {
     
-    private lazy var viewModel: ViewModel = {
-        return ViewModel()
+    private lazy var viewModel: MainViewModel = {
+        return MainViewModel()
     }()
     
     private lazy var spaceXLabel: UILabel = {
@@ -27,6 +27,7 @@ class ViewController: UIViewController {
         tableV.register(CustomTableCell.self, forCellReuseIdentifier: CustomTableCell.identifier)
         tableV.delegate = self
         tableV.dataSource = self
+        tableV.separatorStyle = .none
         return tableV
     }()
     
@@ -47,7 +48,7 @@ class ViewController: UIViewController {
         view.addSubview(tableV)
         tableV.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(spaceXLabel.snp.bottom).offset(10)
+            make.top.equalTo(spaceXLabel.snp.bottom).offset(50)
         }
     }
     
@@ -70,14 +71,24 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = CustomTableCell()
         let items = viewModel.items.value[indexPath.row]
-        cell.textLabel?.text = items.name
-        cell.layer.cornerRadius = 24
+        cell.fetchData(title: items.name, date: items.company)
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 311
+        return 120
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DetailViewController()
+        vc.getId(id: indexPath.row.description)
+        let queue = DispatchQueue.global(qos: .utility)
+        queue.async {
+            DispatchQueue.main.async {
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
     }
     
 }
