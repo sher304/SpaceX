@@ -468,6 +468,7 @@ class DetailViewController: UIViewController {
             guard let images = viewModel.items.value.flickrImages.randomElement() else { return }
             rocketImage.kf.indicatorType = .activity
             rocketImage.kf.setImage(with: URL(string: images), placeholder: nil, options: nil, completionHandler: nil)
+            
             let totalItems = viewModel.items.value
             titleLabel.text = totalItems.name
             firstFlightInfrom.text = totalItems.firstFlight
@@ -486,7 +487,7 @@ class DetailViewController: UIViewController {
             combustionSecondInfrom.text = firstStage.burnTimeSEC?.description
         }
     }
-    
+        
     //MARK: Get id And Send To Network
     func getId(id: String){
         viewModel.getId(id: id)
