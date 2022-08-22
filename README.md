@@ -4,7 +4,6 @@
 
 https://user-images.githubusercontent.com/87121837/185854900-c9ff2d28-4fb1-4ec8-b41e-45c461b62fcd.mp4
 
-
 <h2>Экран 1</h2>
 
 <h3>Список космических ракет</h3>
@@ -46,6 +45,8 @@ https://user-images.githubusercontent.com/87121837/185854900-c9ff2d28-4fb1-4ec8-
 <ul>
 
 <h2>Настройки</h2>
+
+<img width="181" alt="Снимок экрана 2022-08-22 в 12 54 17" src="https://user-images.githubusercontent.com/87121837/185857718-3c16471b-323d-40aa-b4b1-d9fbe74e3f17.png">
 
 После нажатия на кнопку шестеренки, нам открывается экран настройки.
 
